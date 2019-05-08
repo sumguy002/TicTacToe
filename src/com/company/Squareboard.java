@@ -46,6 +46,49 @@ public class Squareboard {
         }
         return 0;
     }
+    public int checkDiagonalWin(){
+        /*
+        how to do this? I'm thinking iterating through every single edge block and having a loop to search through the two diagonals.
+
+        That, or I could try some complicated recursive implementation where I have edges and nodes? meh too hard to wrap head around.
+
+        honestly I think that first one is the only way to do it? let's give it a go. Either that or we iterate
+        through every single node and do a search. Seems really inefficient though so I don't know if that would be smart at all
+        In eed to search through two sides though. And each side I have to search up, then search sound
+         */
+        int consecutive = 0;
+        int curID = 0; //the number ID of the last one tested
+        for (int ind = 0; ind < board.length; ind++){
+            int r = 0;
+            int c = ind;
+            while (c < board.length && c >= 0){// diagonally search to the up right
+                int face = board[r++][c++].getFace();
+                if (face == curID && curID != 0){
+                    consecutive++;
+                }
+                else{
+                    consecutive = 0;
+                    curID = face;
+                }
+                if (consecutive == winLen-1) return face;
+            }
+            consecutive = 0; curID = 0; r = 0; c = ind;
+            while (c < board.length && c >= 0){// diagonally search to the down right
+                int face = board[r++][c--].getFace();
+                if (face == curID && curID != 0){
+                    consecutive++;
+                }
+                else{
+                    consecutive = 0;
+                    curID = face;
+                }
+                if (consecutive == winLen-1) return face;
+            }
+
+            //todo: search up left and down left starting from the right, with initial r being the board[0].length
+        }
+
+    }
     public boolean checkWin(){
         for (int i = 0; i < 3; i++){
 
