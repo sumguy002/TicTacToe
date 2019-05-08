@@ -1,12 +1,12 @@
 package com.company;
 
-public class square {
+public class Square {
     //0 = blank, 1 is x, 2 is O
     private int face;
-    public square(){
+    public Square(){
         face = 0;
     }
-    public square(int squaretoplace){
+    public Square(int squaretoplace){
         face = squaretoplace;
     }
     public void move(int faceID) throws SquareFullException{
