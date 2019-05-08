@@ -16,6 +16,9 @@ public class square {
         }
         else face = faceID;
     }
+    public int getFace(){
+        return face;
+    }
 
 
 }
