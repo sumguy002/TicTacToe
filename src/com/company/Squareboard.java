@@ -85,9 +85,33 @@ public class Squareboard {
                 if (consecutive == winLen-1) return face;
             }
 
-            //todo: search up left and down left starting from the right, with initial r being the board[0].length
-        }
+            consecutive = 0; curID = 0; r = board[0].length; c = ind;
+            while (c < board.length && c >= 0){// diagonally search to the down left from the right
+                int face = board[r--][c--].getFace();
+                if (face == curID && curID != 0){
+                    consecutive++;
+                }
+                else{
+                    consecutive = 0;
+                    curID = face;
+                }
+                if (consecutive == winLen-1) return face;
+            }
 
+            consecutive = 0; curID = 0; r = board[0].length; c = ind;
+            while (c < board.length && c >= 0){// diagonally search to the down left from the right
+                int face = board[r--][c++].getFace();
+                if (face == curID && curID != 0){
+                    consecutive++;
+                }
+                else{
+                    consecutive = 0;
+                    curID = face;
+                }
+                if (consecutive == winLen-1) return face;
+            }
+        }
+        return 0;
     }
     public boolean checkWin(){
         for (int i = 0; i < 3; i++){
