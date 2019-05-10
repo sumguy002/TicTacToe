@@ -175,9 +175,9 @@ public class Squareboard {
         while(true) {
             try {
                 System.out.print("Row:");
-                int Row = Integer.parseInt(inputScan.nextLine()) - 1;
-                System.out.print("Columns:");
                 int row = Integer.parseInt(inputScan.nextLine()) - 1;
+                System.out.print("Columns:");
+                int col = Integer.parseInt(inputScan.nextLine()) - 1;
                 board[row][col].move(player);
                 return;
             }
