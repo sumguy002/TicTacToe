@@ -7,12 +7,20 @@ public class Squareboard {
     public Squareboard(){ //defaults to a 3 by 3
         board = new Square[3][3];
         winLen = 3;
-
+        for (int r = 0; r<board.length; r++){
+            for (int c = 0; c < board[0].length; c++){
+                board[r][c] = new Square();
+            }
+        }
     }
     public Squareboard(int dimensions, int winCon){
         board = new Square[dimensions][dimensions];
         winLen = winCon;
-
+        for (int r = 0; r<board.length; r++){
+            for (int c = 0; c < board[0].length; c++){
+                board[r][c] = new Square();
+            }
+        }
     }
 
     private int checkRowWin(){ // maybe this foreach loop isn't the best idea
@@ -120,17 +128,17 @@ public class Squareboard {
         return 0;
     }
     public String toString(){
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
         for (Square[] row: board){
             for (Square col: row){
-                if (col.getFace() == 0) ret += "_";
-                else if (col.getFace() == 1) ret += "O";
-                else if (col.getFace() == 2) ret += "X";
+                if (col.getFace() == 0) ret.append("_ ");
+                else if (col.getFace() == 1) ret.append("O ");
+                else if (col.getFace() == 2) ret.append("X ");
 
             }
-            ret +=  "\n";
+            ret.append("\n");
         }
-        return ret;
+        return ret.toString();
     }
 
 }
