@@ -174,10 +174,10 @@ public class Squareboard {
         System.out.println("Player " + player + " (" + a + ") move:");
         while(true) {
             try {
-                System.out.print("X:");
+                System.out.print("Row:");
+                int Row = Integer.parseInt(inputScan.nextLine()) - 1;
+                System.out.print("Columns:");
                 int row = Integer.parseInt(inputScan.nextLine()) - 1;
-                System.out.print("Y:");
-                int col = Integer.parseInt(inputScan.nextLine()) - 1;
                 board[row][col].move(player);
                 return;
             }
