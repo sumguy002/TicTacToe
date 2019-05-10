@@ -1,10 +1,11 @@
 package com.company;
+import java.util.*;
 
 public class Squareboard {
     //implementation as a 2d array of boards
     private Square[][] board;
     private int winLen; //winLen is the number of things in a row that is needed
-    public Squareboard(){ //defaults to a 3 by 3
+    public Squareboard() { //defaults to a 3 by 3
         board = new Square[3][3];
         winLen = 3;
         for (int r = 0; r<board.length; r++){
@@ -139,6 +140,15 @@ public class Squareboard {
             ret.append("\n");
         }
         return ret.toString();
+    }
+
+    public void makeMove(int player){
+        Scanner inputScan = new Scanner(System.in);
+        System.out.println("Enter the x coordinate of your move");
+        String row = inputScan.nextLine();
+        System.out.println("Enter the y coordinate of your move");
+        String col = inputScan.nextLine();
+        board[row][col].move(player);
     }
 
 }
