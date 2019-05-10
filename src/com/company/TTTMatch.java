@@ -12,11 +12,13 @@ public class TTTMatch {
         //player 1 is O, player 2 is X
         Squareboard board = new Squareboard(size, winLen);
         int totalturns = 0;
-        while (board.checkWin() == 0){
+        int win;
+        while ((win = board.checkWin()) == 0){
             int curPlayer = (totalturns++%2 + 1);
             board.makeMove(curPlayer);
+            System.out.println(board);
         }
-        System.out.println("player" + board.checkWin() +"wins after " + totalturns + " turns!");
-        return board.checkWin();
+        System.out.println("player " + win +" wins after " + totalturns + " turns!");
+        return win;
     }
 }

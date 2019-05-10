@@ -28,17 +28,19 @@ public class Squareboard {
         // 0 means no winner, 1 means player 1 wins, 2 means player 2 wins
         int consecutive = 0;
         int curID = 0; //the number ID of the last one tested
-        for (Square[] row : board) {
-            for (Square cur: row) {
-                int face = cur.getFace();
+        for (int r = 0; r < board[0].length; r++){
+            for (int c = 0; c < board.length; c++){
+                int face = board[r][c].getFace();
                 if (face == curID && curID != 0) {
                     consecutive++;
                 } else {
                     consecutive = 0;
                     curID = face;
                 }
-                if (consecutive == winLen - 1) return face;
+                if (consecutive == winLen - 1) {return face;}
             }
+            consecutive = 0;
+            curID = 0;
         }
         return 0;
     }
@@ -56,8 +58,10 @@ public class Squareboard {
                     consecutive = 0;
                     curID = face;
                 }
-                if (consecutive == winLen-1) return face;
+                if (consecutive == winLen-1) {return face;}
             }
+            consecutive = 0;
+            curID = 0;
         }
         return 0;
     }
@@ -126,9 +130,11 @@ public class Squareboard {
         return 0;
     }
     public int checkWin(){
-        if (checkColWin() != 0) return checkColWin();
-        if (checkRowWin() != 0) return checkRowWin();
-        if (checkDiagonalWin() != 0) return checkDiagonalWin();
+        int x;
+        if ((x = checkColWin()) != 0) return x;
+        if ((x = checkRowWin()) != 0) return x;
+        if ((x = checkDiagonalWin()) != 0) return x;
+
         return 0;
     }
     public String toString(){
@@ -160,7 +166,7 @@ public class Squareboard {
                 return;
             }
             catch (SquareFullException e) {
-                System.out.println("That square is already taken. Please choose a new swuare");
+                System.out.println("That square is already taken. Please choose a new square");
                 if (++count == maxTries){
                     System.out.println("you have tried to move on an occupied square too much. You have lost your turn");
                 }
