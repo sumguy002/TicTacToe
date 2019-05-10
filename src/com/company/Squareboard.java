@@ -69,11 +69,12 @@ public class Squareboard {
         /*
         assumes squareboard. A rectangle would be even worse tbh
          */
-        int consecutive = 0;
-        int curID = 0; //the number ID of the last one tested
+        int consecutive;
+        int curID; //the number ID of the last one tested
         for (int ind = 0; ind < board.length; ind++){
             int r = 0;
             int c = ind;
+            consecutive = 0; curID = 0;
             while (c < board.length && c >= 0){// diagonally search to the up right
                 int face = board[r++][c++].getFace();
 
@@ -97,6 +98,7 @@ public class Squareboard {
                     curID = face;
                 }
                 if (consecutive == winLen-1) return face;
+
             }
 
             consecutive = 0; curID = 0; r = board[0].length-1; c = ind;
@@ -133,7 +135,10 @@ public class Squareboard {
         int x;
         if ((x = checkColWin()) != 0) return x;
         if ((x = checkRowWin()) != 0) return x;
-        if ((x = checkDiagonalWin()) != 0) return x;
+        if ((x = checkDiagonalWin()) != 0) {
+            System.out.println("DiagonalWin");
+            return x;
+        }
 
         return 0;
     }
@@ -151,11 +156,13 @@ public class Squareboard {
         return ret.toString();
     }
 
-    public void makeMove(int player){// I feel like this would be metter in the TTTmatch class. Whatever.
+    public void makeMove(int player){// I feel like this would be better in the TTTmatch class. Whatever.
         Scanner inputScan = new Scanner(System.in);
         int count = 0;
         int maxTries = 3;
-        System.out.println("Make your move:");
+        String a = "X";
+        if (player == 1) a = "O";
+        System.out.println("Player " + player + " (" + a + ") move:");
         while(true) {
             try {
                 System.out.print("X:");
@@ -172,7 +179,7 @@ public class Squareboard {
                 }
             }
             catch (IndexOutOfBoundsException e) {
-                System.out.println("That square is not in the board. Please choose a new swuare");
+                System.out.println("That square is not in the board. Please choose a new square");
             }
         }
 

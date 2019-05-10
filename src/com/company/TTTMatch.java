@@ -13,6 +13,7 @@ public class TTTMatch {
         Squareboard board = new Squareboard(size, winLen);
         int totalturns = 0;
         int win;
+        System.out.println(board);
         while ((win = board.checkWin()) == 0){
             int curPlayer = (totalturns++%2 + 1);
             board.makeMove(curPlayer);
