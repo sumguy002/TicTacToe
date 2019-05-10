@@ -5,6 +5,7 @@ public class Squareboard {
     //implementation as a 2d array of boards
     private Square[][] board;
     private int winLen; //winLen is the number of things in a row that is needed
+    public int totalTurns;
     public Squareboard() { //defaults to a 3 by 3. tbh not that useful.
         board = new Square[3][3];
         winLen = 3;
@@ -22,6 +23,7 @@ public class Squareboard {
                 board[r][c] = new Square();
             }
         }
+
     }
 
     private int checkRowWin(){ // maybe this foreach loop isn't the best idea
@@ -135,11 +137,8 @@ public class Squareboard {
         int x;
         if ((x = checkColWin()) != 0) return x;
         if ((x = checkRowWin()) != 0) return x;
-        if ((x = checkDiagonalWin()) != 0) {
-            System.out.println("DiagonalWin");
-            return x;
-        }
-
+        if ((x = checkDiagonalWin()) != 0) return x;
+        if (totalTurns >= board.length*board[0].length) return -1;
         return 0;
     }
     public String toString(){
