@@ -143,16 +143,25 @@ public class Squareboard {
         return 0;
     }
     public String toString(){
+        int countR = 1;
+        int countC = 1;
         StringBuilder ret = new StringBuilder();
         for (Square[] row: board){
+            ret.append(countR++);
+            ret.append(" ");
             for (Square col: row){
                 if (col.getFace() == 0) ret.append("_ ");
                 else if (col.getFace() == 1) ret.append("O ");
                 else if (col.getFace() == 2) ret.append("X ");
-
             }
             ret.append("\n");
+            //todo: this numbering scheme doesn't work if the dimension is 2 digits or more. Fix that somehow?
         }
+        ret.append(" ");
+        while (countC < countR){
+            ret.append(" ").append(countC++);
+        }
+
         return ret.toString();
     }
 
