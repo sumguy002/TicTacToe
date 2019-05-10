@@ -144,11 +144,25 @@ public class Squareboard {
 
     public void makeMove(int player){
         Scanner inputScan = new Scanner(System.in);
-        System.out.println("Enter the x coordinate of your move");
-        String row = inputScan.nextLine();
-        System.out.println("Enter the y coordinate of your move");
-        String col = inputScan.nextLine();
-        board[row][col].move(player);
+        int count = 0;
+        int maxTries = 3;
+        System.out.println("Make your move:");
+        while(true) {
+            try {
+                System.out.print("X:");
+                int row = Integer.parseInt(inputScan.nextLine());
+                System.out.print("Y:");
+                int col = Integer.parseInt(inputScan.nextLine());
+                board[row][col].move(player);
+                return;
+            } catch (SquareFullException e) {
+                System.out.println("That square is already taken. Please choose a new swuare");
+                if (++count == maxTries){
+                    System.out.println("you have tried to move on an occupied square too much. You have lost your turn");
+                }
+            }
+        }
+
     }
 
 }

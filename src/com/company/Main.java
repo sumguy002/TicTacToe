@@ -6,5 +6,8 @@ public class Main {
         Squareboard bob = new Squareboard(10,5);
         System.out.println(bob);
         bob.makeMove(1);
+        System.out.println(bob);
+        bob.makeMove(2);
+        System.out.println(bob);
     }
 }
