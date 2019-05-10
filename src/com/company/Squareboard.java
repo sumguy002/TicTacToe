@@ -5,7 +5,7 @@ public class Squareboard {
     //implementation as a 2d array of boards
     private Square[][] board;
     private int winLen; //winLen is the number of things in a row that is needed
-    public Squareboard() { //defaults to a 3 by 3
+    public Squareboard() { //defaults to a 3 by 3. tbh not that useful.
         board = new Square[3][3];
         winLen = 3;
         for (int r = 0; r<board.length; r++){
@@ -72,6 +72,7 @@ public class Squareboard {
             int c = ind;
             while (c < board.length && c >= 0){// diagonally search to the up right
                 int face = board[r++][c++].getFace();
+
                 if (face == curID && curID != 0){
                     consecutive++;
                 }
@@ -94,9 +95,10 @@ public class Squareboard {
                 if (consecutive == winLen-1) return face;
             }
 
-            consecutive = 0; curID = 0; r = board[0].length; c = ind;
+            consecutive = 0; curID = 0; r = board[0].length-1; c = ind;
             while (c < board.length && c >= 0){// diagonally search to the down left from the right
                 int face = board[r--][c--].getFace();
+
                 if (face == curID && curID != 0){
                     consecutive++;
                 }
@@ -107,9 +109,10 @@ public class Squareboard {
                 if (consecutive == winLen-1) return face;
             }
 
-            consecutive = 0; curID = 0; r = board[0].length; c = ind;
-            while (c < board.length && c >= 0){// diagonally search to the down left from the right
+            consecutive = 0; curID = 0; r = board[0].length-1; c = ind;
+            while (c < board.length && c >= 0){// diagonally search to the down right  from the left
                 int face = board[r--][c++].getFace();
+
                 if (face == curID && curID != 0){
                     consecutive++;
                 }
@@ -142,7 +145,7 @@ public class Squareboard {
         return ret.toString();
     }
 
-    public void makeMove(int player){
+    public void makeMove(int player){// I feel like this would be metter in the TTTmatch class. Whatever.
         Scanner inputScan = new Scanner(System.in);
         int count = 0;
         int maxTries = 3;
@@ -150,16 +153,20 @@ public class Squareboard {
         while(true) {
             try {
                 System.out.print("X:");
-                int row = Integer.parseInt(inputScan.nextLine());
+                int row = Integer.parseInt(inputScan.nextLine()) - 1;
                 System.out.print("Y:");
-                int col = Integer.parseInt(inputScan.nextLine());
+                int col = Integer.parseInt(inputScan.nextLine()) - 1;
                 board[row][col].move(player);
                 return;
-            } catch (SquareFullException e) {
+            }
+            catch (SquareFullException e) {
                 System.out.println("That square is already taken. Please choose a new swuare");
                 if (++count == maxTries){
                     System.out.println("you have tried to move on an occupied square too much. You have lost your turn");
                 }
+            }
+            catch (IndexOutOfBoundsException e) {
+                System.out.println("That square is not in the board. Please choose a new swuare");
             }
         }
 

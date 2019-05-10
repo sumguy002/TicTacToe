@@ -3,11 +3,7 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        Squareboard bob = new Squareboard(10,5);
-        System.out.println(bob);
-        bob.makeMove(1);
-        System.out.println(bob);
-        bob.makeMove(2);
-        System.out.println(bob);
+        TTTMatch bob = new TTTMatch(3,3);
+        bob.startmatch();
     }
 }
