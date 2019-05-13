@@ -1,6 +1,8 @@
 package com.company;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GUIFrame extends JFrame { //a specific JFrame that will hopefully let me play tic tac toe
     public GUIFrame(String title){
@@ -14,6 +16,14 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
 
         c.add(welcome, BorderLayout.CENTER);
         c.add(DoublePlayer, BorderLayout.SOUTH);
+
+        DoublePlayer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                welcome.append("(Hey. pssst. I haven't actually gotten the game to run yet, okay? \n keep your " +
+                        "grubby fingers off my button for now. \nIt's best if everyone just wows at the menu instead.)\n");
+            }
+        });
 
 
     }
