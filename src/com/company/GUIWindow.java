@@ -10,7 +10,7 @@ public class GUIWindow { //creates and runs an instance of the window of GUIFram
                 JFrame window = new GUIFrame("Tic Tac Toe!");
                 window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 window.setVisible(true);
-                window.setSize(500,500);
+                window.setSize(600,500);
             }
 
         });
