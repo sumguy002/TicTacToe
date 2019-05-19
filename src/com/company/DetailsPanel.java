@@ -2,8 +2,18 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class DetailsPanel extends JPanel {
+    private String curUsername;
+    public String getCurUsername(){
+        return curUsername;
+    }
+    private String curPass;
+    public String getCurPass(){
+        return curPass;
+    }
+    private JButton logIn = new JButton("Log into Scoreboard!");
     public DetailsPanel(){
         Dimension size = getPreferredSize();
         size.width = 250;
@@ -15,16 +25,19 @@ public class DetailsPanel extends JPanel {
 
         JTextField nameField = new JTextField(0);
         JTextField passField = new JTextField(0);
-        JButton logIn = new JButton("Log into Scoreboard!");
         JButton DoublePlayer = new JButton("Start Double Player Game");
         setLayout(new GridBagLayout());
         logIn.addActionListener( (e) -> {
-            String userN = nameField.getText();
-            String pass = passField.getText();
+            curUsername = nameField.getText();
+            curPass = passField.getText();
+            //TODO: currently this executes AFTER I print. I will need to find a way to get that through.
 
-            System.out.println(userN + pass);
             //check with login map. If not create new, otherwise set a current variable as is.
+            //note that I should do that here since this detaillsPanel is exclusively for a leaderboard login.
+            // I would simply return the username as a "curPlayer" or something in GUIFrame
         } );
+
+
 
         GridBagConstraints gCons = new GridBagConstraints();
 
@@ -61,6 +74,11 @@ public class DetailsPanel extends JPanel {
         add(new JLabel(""), gCons);
     }
 
+    public void addActionListener(ActionListener al)
+    {
+        // attach this listener to the button
+        logIn.addActionListener(al);
+    }
 
 
 }

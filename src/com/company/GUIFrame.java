@@ -23,6 +23,14 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
         c.add(DoublePlayer, BorderLayout.SOUTH);
         c.add(detailsPanel, BorderLayout.EAST);
 
+
+        detailsPanel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                welcome.append("\nUsername: " + detailsPanel.getCurUsername()) ;
+                welcome.append("\nPassword: " + detailsPanel.getCurPass());
+            }
+        });
         DoublePlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -30,6 +38,7 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
                         "grubby fingers off my button for now. \nIt's best if everyone just wows at the menu instead.)\n");
             }
         });
+
 
 
         //TODO: when the game starts, get a new layout that suits the tic tac toe game.
