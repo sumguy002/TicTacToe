@@ -18,6 +18,13 @@ public class DetailsPanel extends JPanel {
         JButton logIn = new JButton("Log into Scoreboard!");
         JButton DoublePlayer = new JButton("Start Double Player Game");
         setLayout(new GridBagLayout());
+        logIn.addActionListener( (e) -> {
+            String userN = nameField.getText();
+            String pass = passField.getText();
+
+            System.out.println(userN + pass);
+            //check with login map. If not create new, otherwise set a current variable as is.
+        } );
 
         GridBagConstraints gCons = new GridBagConstraints();
 
@@ -53,4 +60,7 @@ public class DetailsPanel extends JPanel {
         gCons.gridx = 0;
         add(new JLabel(""), gCons);
     }
+
+
+
 }

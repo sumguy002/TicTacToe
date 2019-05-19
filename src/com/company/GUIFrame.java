@@ -11,10 +11,14 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
         super(title);
         detailsPanel = new DetailsPanel();
         setLayout(new BorderLayout());
+
+        //next area and stuff
         JTextArea welcome = new JTextArea("Welcome to Bryan's Tic Tac Toe GUI! As of now this probably doesn't event work. \n");
         JButton DoublePlayer = new JButton("Start Double Player Game");
         welcome.setEditable(false);
         Container c = getContentPane();
+
+        //addinh stuff to the layout
         c.add(welcome, BorderLayout.CENTER);
         c.add(DoublePlayer, BorderLayout.SOUTH);
         c.add(detailsPanel, BorderLayout.EAST);
@@ -26,6 +30,9 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
                         "grubby fingers off my button for now. \nIt's best if everyone just wows at the menu instead.)\n");
             }
         });
+
+
+        //TODO: when the game starts, get a new layout that suits the tic tac toe game.
 
 
     }
