@@ -3,14 +3,23 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
 
 public class DetailsPanel extends JPanel {
+
+    public HashMap<String, String> logInMap = new HashMap<String, String>();
+
     private String curUsername;
+
+    JTextField nameField;
+    JTextField passField;
     public String getCurUsername(){
+        curUsername = nameField.getText(); //to be moved out
         return curUsername;
     }
     private String curPass;
     public String getCurPass(){
+        curPass = passField.getText(); //to be moved out
         return curPass;
     }
     private JButton logIn = new JButton("Log into Scoreboard!");
@@ -23,14 +32,26 @@ public class DetailsPanel extends JPanel {
         JLabel nameLabel = new JLabel("Username:");
         JLabel passLabel = new JLabel("Password:");
 
-        JTextField nameField = new JTextField(0);
-        JTextField passField = new JTextField(0);
+        nameField = new JTextField(0);
+        passField = new JTextField(0);
         JButton DoublePlayer = new JButton("Start Double Player Game");
         setLayout(new GridBagLayout());
         logIn.addActionListener( (e) -> {
+            if (logInMap.containsKey(nameField.getText())){
+                if (passField.getText().equals(logInMap.get(nameField.getText()))){
+                    //logs in to namefield.getText
+                }
+                else{
+                    passField.setText("Your password is incorrect. Please try again");
+                    //TODO: this is temporary fix. I should add to the bottom a message
+                    // saying password is incorrect instead of putting it in a field. Should'nt be hard
+                }
+            }
+            else {
+                logInMap.put(nameField.getText(), passField.getText());
+            }
             curUsername = nameField.getText();
             curPass = passField.getText();
-            //TODO: currently this executes AFTER I print. I will need to find a way to get that through.
 
             //check with login map. If not create new, otherwise set a current variable as is.
             //note that I should do that here since this detaillsPanel is exclusively for a leaderboard login.
