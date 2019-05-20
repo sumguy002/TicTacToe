@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 public class GUIFrame extends JFrame { //a specific JFrame that will hopefully let me play tic tac toe
     private DetailsPanel detailsPanel;
-
+    private String curUsername;
     public GUIFrame(String title){
         super(title);
         detailsPanel = new DetailsPanel();
@@ -27,8 +27,14 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
         detailsPanel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                welcome.append("\nUsername: " + detailsPanel.getCurUsername()) ;
-                welcome.append("\nPassword: " + detailsPanel.getCurPass());
+                if (!(detailsPanel.getCurUsername() == "")){
+                    welcome.append("login successful on this end\n");
+                    //TODO: we have a problem.
+                    // The check here happens BEFORE the detailsPanel processes everything
+                    // so the first time they create an account it won't log them in
+                    // and every subsequent time the PREVIOUS login creds will be used. Yikes
+                    // and it says EVERYTHING is a successful login as of now. Gotta fix!
+                }
             }
         });
         DoublePlayer.addActionListener(new ActionListener() {

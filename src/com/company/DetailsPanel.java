@@ -20,62 +20,50 @@ info on the server anyways. So maybe just have this part be mostly obselete for 
  */
 public class DetailsPanel extends JPanel {
 
-    public HashMap<String, String> logInMap = new HashMap<String, String>();
+    private HashMap<String, String> logInMap = new HashMap<String, String>();
 
-    private String curUsername;
+    private String curUsername = "";//the current logged in username
+    public String getCurUsername(){
+        return curUsername;
+    }
 
     JTextField nameField;
     JTextField passField;
-    public String getCurUsername(){
-        curUsername = nameField.getText(); //to be moved out
-        return curUsername;
-    }
-    private String curPass;
-    public String getCurPass(){
-        curPass = passField.getText(); //to be moved out
-        return curPass;
-    }
+    JLabel message = new JLabel("");
+
     private JButton logIn = new JButton("Log into Scoreboard!");
     public DetailsPanel(){
         Dimension size = getPreferredSize();
         size.width = 250;
         setPreferredSize(size);
-        setBorder(BorderFactory.createTitledBorder("Menu"));
+        setBorder(BorderFactory.createTitledBorder("Log into scoreboard"));
 
         JLabel nameLabel = new JLabel("Username:");
         JLabel passLabel = new JLabel("Password:");
 
         nameField = new JTextField(0);
         passField = new JTextField(0);
-        JButton DoublePlayer = new JButton("Start Double Player Game");
         setLayout(new GridBagLayout());
-        logIn.addActionListener( (e) -> {
+        logIn.addActionListener( (e) -> {//login attempted
             if (logInMap.containsKey(nameField.getText())){
                 if (passField.getText().equals(logInMap.get(nameField.getText()))){
-                    //logs in to namefield.getText
+                    curUsername = nameField.getText();
+                    message.setText("<html>Login Successful.<br>This menu will disappear in 5 seconds.</html>");
+                    //TODO: wait 5 seconds as appropriate and then hide the DetailsPanel window
                 }
                 else{
-                    GridBagConstraints gCons = new GridBagConstraints();
-                    gCons.gridy = 3;
-                    gCons.weighty = 20;
-                    gCons.anchor = GridBagConstraints.LAST_LINE_END;
-                    gCons.gridwidth=2;
-                    add(new JLabel("<html>Your password is incorrect.<br>Please try again.</html>"), gCons);
+                    message.setText("<html>Your password is incorrect.<br>Please try again.</html>");
 
 
-                    //TODO: this is temporary fix. I should add to the bottom a message
-                    // saying password is incorrect instead of putting it in a field. Should'nt be hard
                 }
             }
             else {
                 logInMap.put(nameField.getText(), passField.getText());
+                curUsername = nameField.getText();
+                message.setText("<html>You have created a new account <br> Use this username to log in in the future</html>");
             }
-            curUsername = nameField.getText();
-            curPass = passField.getText();
 
-            //check with login map. If not create new, otherwise set a current variable as is.
-            //note that I should do that here since this detaillsPanel is exclusively for a leaderboard login.
-            // I would simply return the username as a "curPlayer" or something in GUIFrame
+
         } );
 
 
@@ -113,6 +101,11 @@ public class DetailsPanel extends JPanel {
         gCons.weightx = 1000;
         gCons.gridx = 0;
         add(new JLabel(""), gCons);
+        gCons.gridy = 3;
+        gCons.weighty = 20;
+        gCons.anchor = GridBagConstraints.LAST_LINE_END;
+        gCons.gridwidth=2;
+        add(message, gCons);
     }
 
     public void addActionListener(ActionListener al)
@@ -120,6 +113,7 @@ public class DetailsPanel extends JPanel {
         // attach this listener to the button
         logIn.addActionListener(al);
     }
+
 
 
 }
