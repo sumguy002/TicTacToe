@@ -4,7 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
+/*
 
+
+This details panel handles logins and appears on the main menu to log in for the leaderboard.
+For the leaderboard itself I can either make another panel that appears at the end of games,
+or I could just redraw this login panel. But that would mean that they can't log in again.
+
+This is pretty pointless unless I get into server-client though so I don't really know as of now, because
+if it is over a single run of the program the program itself will be closed. So I would need to store leaderboard
+info on the server anyways. So maybe just have this part be mostly obselete for now?
+
+
+
+ */
 public class DetailsPanel extends JPanel {
 
     public HashMap<String, String> logInMap = new HashMap<String, String>();
@@ -42,7 +55,14 @@ public class DetailsPanel extends JPanel {
                     //logs in to namefield.getText
                 }
                 else{
-                    passField.setText("Your password is incorrect. Please try again");
+                    GridBagConstraints gCons = new GridBagConstraints();
+                    gCons.gridy = 3;
+                    gCons.weighty = 20;
+                    gCons.anchor = GridBagConstraints.LAST_LINE_END;
+                    gCons.gridwidth=2;
+                    add(new JLabel("<html>Your password is incorrect.<br>Please try again.</html>"), gCons);
+
+
                     //TODO: this is temporary fix. I should add to the bottom a message
                     // saying password is incorrect instead of putting it in a field. Should'nt be hard
                 }
