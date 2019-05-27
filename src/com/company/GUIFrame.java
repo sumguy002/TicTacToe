@@ -29,11 +29,8 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
             public void actionPerformed(ActionEvent e) {
                 if (!(detailsPanel.getCurUsername() == "")){
                     welcome.append("login successful on this end\n");
-                    //TODO: we have a problem.
-                    // The check here happens BEFORE the detailsPanel processes everything
-                    // so the first time they create an account it won't log them in
-                    // and every subsequent time the PREVIOUS login creds will be used. Yikes
-                    // and it says EVERYTHING is a successful login as of now. Gotta fix!
+                    welcome.append(detailsPanel.getCurUsername());
+
                 }
             }
         });
@@ -44,7 +41,6 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
                         "grubby fingers off my button for now. \nIt's best if everyone just wows at the menu instead.)\n");
             }
         });
-
 
 
         //TODO: when the game starts, get a new layout that suits the tic tac toe game.

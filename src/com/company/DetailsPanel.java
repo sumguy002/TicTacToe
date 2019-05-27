@@ -49,17 +49,18 @@ public class DetailsPanel extends JPanel {
                 if (passField.getText().equals(logInMap.get(nameField.getText()))){
                     curUsername = nameField.getText();
                     message.setText("<html>Login Successful.<br>This menu will disappear in 5 seconds.</html>");
+                    fireActionPerformed();
                     //TODO: wait 5 seconds as appropriate and then hide the DetailsPanel window
                 }
                 else{
                     message.setText("<html>Your password is incorrect.<br>Please try again.</html>");
-
+                    curUsername = "";
 
                 }
             }
             else {
                 logInMap.put(nameField.getText(), passField.getText());
-                curUsername = nameField.getText();
+                //curUsername = nameField.getText(); //should I log in immediately or re-login?
                 message.setText("<html>You have created a new account <br> Use this username to log in in the future</html>");
             }
 
@@ -108,11 +109,21 @@ public class DetailsPanel extends JPanel {
         add(message, gCons);
     }
 
-    public void addActionListener(ActionListener al)
-    {
-        // attach this listener to the button
-        logIn.addActionListener(al);
+    public void addActionListener(ActionListener al) {
+        listenerList.add(ActionListener.class, al);
     }
+
+    protected void fireActionPerformed() {
+        ActionListener[] listeners = listenerList.getListeners(ActionListener.class);
+        if (listeners.length == 0) {
+            return;
+        }
+        ActionEvent evt = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "login successful");
+        for (ActionListener listener : listeners) {
+            listener.actionPerformed(evt);
+        }
+    }
+
 
 
 
