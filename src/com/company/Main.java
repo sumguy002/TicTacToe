@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         new GUIWindow().createWindow();
-        TTTMatch bob = new TTTMatch(4,6);
-        bob.startmatch();
+        (new TTTMatch(4,6)).startmatch();
+
     }
 }
