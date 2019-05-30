@@ -32,9 +32,10 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
         detailsPanel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!(detailsPanel.getCurUsername() == "")){
+                if (!(detailsPanel.getCurUsername().equals(""))){
                     welcome.append("login successful on this end\n");
                     welcome.append(detailsPanel.getCurUsername());
+                    //TODO: actually make this do something
                 }
             }
         });
@@ -49,9 +50,6 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
         //TODO: when the game starts, get a new layout that suits the tic tac toe game.
         // Looks like a bunch of JButtons is the way to go.
 
-
-        //TODO: when a two-player button is pressed, make all those buttons disappear
-        // and replace it with JSpinner for dimensions number in a row needed to win.
 
         //////////////////////
     }
@@ -82,7 +80,7 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
             @Override
             public void actionPerformed(ActionEvent e) {
                 setWC((Integer)spin.getValue(), gc);
-                next.hide();
+                next.setVisible(false);
             }
         });
 
@@ -93,8 +91,23 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
         add(next, gc);
         welcome.setText("Set your win condition. This is the number in a row needed to win!");
         spin.setModel(new SpinnerNumberModel(2 , 1, size, 1));
-
+        next.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buildMatch(size, (Integer)spin.getValue());
+                next.setVisible(false);
+                spin.setVisible(false);
+            }
+        });
+        //TODO: create startgame function that opens
+        //Note: making the questionable decision here to just put the game INTO GUIFrame.
 
     }
+    private void buildMatch(int size, int winC){
+        System.out.println("hihihi");
+    }
+
+
+
 
 }
