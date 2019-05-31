@@ -1,5 +1,6 @@
 package com.company;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -104,7 +105,9 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
 
     }
     private void buildMatch(int size, int winC){
-        System.out.println("hihihi");
+        gamePanel = new GamePanel(size, winC);
+        setLayout(new BorderLayout());
+        add(gamePanel, BorderLayout.CENTER);
     }
 
 
