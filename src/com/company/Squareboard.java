@@ -6,6 +6,9 @@ public class Squareboard {
     private Square[][] board;
     private int winLen; //winLen is the number of things in a row that is needed
     public int totalTurns;
+    public int getSize(){
+        return board.length;
+    }
     public Squareboard() { //defaults to a 3 by 3. tbh not that useful.
         board = new Square[3][3];
         winLen = 3;
@@ -191,6 +194,8 @@ public class Squareboard {
             }
         }
 
+//TODO: function that returns a list of indices that
     }
+
 
 }

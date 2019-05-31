@@ -2,6 +2,8 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GamePanel extends JPanel {
     Squareboard board;
@@ -15,10 +17,23 @@ public class GamePanel extends JPanel {
         setBorder(BorderFactory.createTitledBorder("game border"));
         setVisible(true);
         for (int i = 0; i < boardSize*boardSize; i++){
-            add(new JButton("hi" + i));
-            //TODO: how to reference these objects and change it later?
-            // And how to correspond these to squareBoard if GridLayout just uses numbers?
+            JButton but = new JButton("_");
+            but.setFont(new Font("Arial", Font.PLAIN, 60));
+            add(but);
+            but.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
+            //TODO: Add actionlistener here to connect it to Squareboard
+
         }
+    }
+
+    public String makeMove(){
+
+        return null; //temporary
     }
 
 }
