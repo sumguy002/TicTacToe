@@ -23,19 +23,11 @@ public class Square extends JButton {
         super("X");
         face = squaretoplace;
         setFont(new Font("Arial", Font.PLAIN, 60));
-        addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //fire event to indicate move made
-            }
-        });
     }
-    public void move(int faceID) throws SquareFullException{
-        if (face != 0)
-        {
-            throw new SquareFullException("square is already marked!");
-        }
-        else face = faceID;
+    public void setFace(int faceID){
+        face = faceID;
+        if (faceID == 1) {setText("X");}
+        if (faceID == 2) {setText("O");}
     }
     public int getFace(){
         return face;

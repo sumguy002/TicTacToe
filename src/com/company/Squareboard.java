@@ -176,9 +176,7 @@ public class Squareboard {
     }
 
 
-    public boolean makeMove(int player){ //returns true if the move is made successfully
-        return true;
-    }
+
     public void makeMove(boolean x, int player){// I feel like this would be better in the TTTmatch class. Whatever.
         /*
         delete this method once I finish adapting it to the GUI
@@ -196,15 +194,10 @@ public class Squareboard {
                 int row = Integer.parseInt(inputScan.nextLine()) - 1;
                 System.out.print("Columns:");
                 int col = Integer.parseInt(inputScan.nextLine()) - 1;
-                board[row][col].move(player);
+                board[row][col].setFace(player);
                 return;
             }
-            catch (SquareFullException e) {
-                System.out.println("That square is already taken. Please choose a new square");
-                if (++count == maxTries){
-                    System.out.println("you have tried to move on an occupied square too much. You have lost your turn");
-                }
-            }
+
             catch (IndexOutOfBoundsException e) {
                 System.out.println("That square is not in the board. Please choose a new square");
             }
