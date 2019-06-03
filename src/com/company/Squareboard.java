@@ -152,7 +152,7 @@ public class Squareboard {
         if (totalTurns >= board.length*board[0].length) return -1;
         return 0;
     }
-    public String toString(){
+    public String toString(){ // will be pointless soon.
         int countR = 1;
         int countC = 1;
         StringBuilder ret = new StringBuilder();
@@ -175,7 +175,15 @@ public class Squareboard {
         return ret.toString();
     }
 
-    public void makeMove(int player){// I feel like this would be better in the TTTmatch class. Whatever.
+
+    public boolean makeMove(int player){ //returns true if the move is made successfully
+        return true;
+    }
+    public void makeMove(boolean x, int player){// I feel like this would be better in the TTTmatch class. Whatever.
+        /*
+        delete this method once I finish adapting it to the GUI
+        the boolean input is there just to differentiate the different methods
+         */
         Scanner inputScan = new Scanner(System.in);
         int count = 0;
         int maxTries = 3;

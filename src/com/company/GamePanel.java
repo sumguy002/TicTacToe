@@ -16,16 +16,22 @@ public class GamePanel extends JPanel {
         setLayout(new GridLayout(boardSize, boardSize));
         setBorder(BorderFactory.createTitledBorder("game border"));
         setVisible(true);
-        for (int i = 0; i < boardSize*boardSize; i++){//to delete in the buture
+        for (int i = 0; i < boardSize*boardSize; i++){
             add(board.getSquare(i));
-            //TODO: Add actionlistener here to connect it to Squareboard
-
         }
+        startMatch();
     }
+    public int startMatch(){
+        int win;
+        int curPlayer = 2;
+        while ((win = board.checkWin()) == 0){
+            curPlayer = 3 - curPlayer; //alternates between 1/2, starting w/ 1
+            while (!board.makeMove(curPlayer));
+            break; //TODO: remove when I've implemented the game
+        }
 
-    public String makeMove(){
-
-        return null; //temporary
+        //create another pop up indicating who wins via GUI
+        return win;
     }
 
 }

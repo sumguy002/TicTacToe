@@ -15,7 +15,7 @@ public class Square extends JButton {
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //fire event to indicate move made
+                //fires action to squareboard with coordinates
             }
         });
     }

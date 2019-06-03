@@ -16,7 +16,7 @@ public class TTTMatch {
         System.out.println(board);
         while ((win = board.checkWin()) == 0){
             int curPlayer = (board.totalTurns++%2 + 1);
-            board.makeMove(curPlayer);
+            board.makeMove(true, curPlayer);
             System.out.println(board);
 
         }
