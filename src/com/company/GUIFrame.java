@@ -108,6 +108,7 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
         gamePanel = new GamePanel(size, winC);
         setLayout(new BorderLayout());
         add(gamePanel, BorderLayout.CENTER);
+        welcome.setVisible(false);
     }
 
 

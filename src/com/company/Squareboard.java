@@ -9,6 +9,14 @@ public class Squareboard {
     public int getSize(){
         return board.length;
     }
+    public Square getSquare(int index){
+        int row = index%board.length;
+        int col = index/board.length;
+        return board[row][col];
+    }
+    public Square getSquare(int row, int col){
+        return board[row][col];
+    }
     public Squareboard() { //defaults to a 3 by 3. tbh not that useful.
         board = new Square[3][3];
         winLen = 3;

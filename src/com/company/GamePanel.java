@@ -16,16 +16,8 @@ public class GamePanel extends JPanel {
         setLayout(new GridLayout(boardSize, boardSize));
         setBorder(BorderFactory.createTitledBorder("game border"));
         setVisible(true);
-        for (int i = 0; i < boardSize*boardSize; i++){
-            JButton but = new JButton("_");
-            but.setFont(new Font("Arial", Font.PLAIN, 60));
-            add(but);
-            but.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                }
-            });
+        for (int i = 0; i < boardSize*boardSize; i++){//to delete in the buture
+            add(board.getSquare(i));
             //TODO: Add actionlistener here to connect it to Squareboard
 
         }
