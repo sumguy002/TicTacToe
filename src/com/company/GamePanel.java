@@ -40,7 +40,14 @@ public class GamePanel extends JPanel {
         }
     }
     public void endMatch(int winner){
+        for (int i = 0; i < board.getSize()*board.getSize(); i++){
+            board.getSquare(i).setEnabled(false);
+            if (board.getSquare(i).getFace() == winner){
+                board.getSquare(i).setBackground(Color.red);
+            }
+        }
         if (winner == 0){
+
             //tie
         }
         //TODO: create another pop up indicating who wins via GUI
