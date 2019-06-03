@@ -18,6 +18,12 @@ public class GamePanel extends JPanel {
         setVisible(true);
         for (int i = 0; i < boardSize*boardSize; i++){
             add(board.getSquare(i));
+            if (board.getSize() > 8){
+                board.getSquare(i).setFont(new Font("Arial", Font.PLAIN, 40));
+            }
+            else if (board.getSize() > 6){
+                board.getSquare(i).setFont(new Font("Arial", Font.PLAIN, 50));
+            }
         }
         startMatch();
     }

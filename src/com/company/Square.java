@@ -20,7 +20,7 @@ public class Square extends JButton {
         });
     }
     public Square(int squaretoplace){
-        super("_");
+        super("X");
         face = squaretoplace;
         setFont(new Font("Arial", Font.PLAIN, 60));
         addActionListener(new ActionListener() {
