@@ -21,7 +21,7 @@ public class GamePanel extends JPanel {
             Square square = board.getSquare(i);
             add(square);
             if (board.getSize() > 8){
-                square.setFont(new Font("Arial", Font.PLAIN, 40));
+                square.setFont(new Font("Arial", Font.PLAIN, 35));
             }
             else if (board.getSize() > 6){
                 square.setFont(new Font("Arial", Font.PLAIN, 50));
@@ -30,7 +30,8 @@ public class GamePanel extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (square.getFace() == 0){
-                        square.setFace(curPlayer = 3-curPlayer);//
+                        square.setFace(curPlayer = 3-curPlayer);
+                        board.totalTurns++;
                     }
                     if (board.checkWin() != 0){
                         endMatch(board.checkWin());
@@ -48,7 +49,7 @@ public class GamePanel extends JPanel {
         }
         if (winner == 0){
 
-            //tie
+            System.out.print("game tied");
         }
         //TODO: create another pop up indicating who wins via GUI
     }

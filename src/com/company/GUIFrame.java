@@ -91,7 +91,7 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
         JButton next = new JButton("next");
         add(next, gc);
         welcome.setText("Set your win condition. This is the number in a row needed to win!");
-        spin.setModel(new SpinnerNumberModel(2 , 1, size, 1));
+        spin.setModel(new SpinnerNumberModel(3 , 1, size, 1));
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
