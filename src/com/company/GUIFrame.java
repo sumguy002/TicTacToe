@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class GUIFrame extends JFrame { //a specific JFrame that will hopefully let me play tic tac toe
     private DetailsPanel detailsPanel;
     private String curUsername;
-    private JPanel gamePanel;
+    private GamePanel gamePanel;
     private JTextArea welcome;
     private JButton DoublePlayer;
     private JSpinner spin;
@@ -105,10 +105,18 @@ public class GUIFrame extends JFrame { //a specific JFrame that will hopefully l
 
     }
     private void buildMatch(int size, int winC){
+
         gamePanel = new GamePanel(size, winC);
+        gamePanel.setGameOver(new Object(){
+            public String toString(){ //VERY VERY BAD PRACTICE. replacing the default function "just cuz it's there"
+                add(new EndPanel(), BorderLayout.SOUTH); //TODO: concurrent thread this so I don't have this monstrosity.
+                return null;
+            }});
         setLayout(new BorderLayout());
         add(gamePanel, BorderLayout.CENTER);
         welcome.setVisible(false);
+
+
     }
 
 

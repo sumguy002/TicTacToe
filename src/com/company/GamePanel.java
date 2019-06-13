@@ -8,7 +8,11 @@ import java.awt.event.ActionListener;
 public class GamePanel extends JPanel {
     Squareboard board;
     int curPlayer = 2;
-    public GamePanel(int boardSize, int winCond){ //creating the board
+    private Object gameOver;
+
+
+    public GamePanel(int boardSize, int winCond){ //creating the board;
+
         Dimension size = getPreferredSize();
         size.width = 2;
         size.height = 2;
@@ -47,12 +51,12 @@ public class GamePanel extends JPanel {
                 board.getSquare(i).setBackground(Color.red);
             }
         }
-        if (winner == 0){
+        gameOver.toString();//the current "endgame" thing
 
-            System.out.print("game tied");
-        }
-        //TODO: create another pop up indicating who wins via GUI
     }
+
+    public void setGameOver(Object i){gameOver = i;}
+
 
 
 }
